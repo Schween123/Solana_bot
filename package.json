@@ -23,6 +23,7 @@
   "scripts": {
     "build": "tsc",
     "clean": "tsc --build --clean",
-    "swapBot": "ts-node src/swapBot.ts"
+    "swapBot": "ts-node src/swapBot.ts",
+    "testWallet": "ts-node src/test-wallet.js"
   }
 }
