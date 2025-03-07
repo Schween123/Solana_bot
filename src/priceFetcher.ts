@@ -23,7 +23,7 @@ import { Connection, TransactionMessage, Keypair, VersionedTransaction } from "@
 // }
 
 let basePrice = 100;
-let volatility = 0.1; // 5% max change per cycle
+let volatility = 0.01; // 5% max change per cycle
 let trend: "up" | "down" = Math.random() > 0.5 ? "up" : "down"; // Random initial trend
 let trendDuration = Math.floor(Math.random() * 5) + 1;
 let trendCounter = 0;

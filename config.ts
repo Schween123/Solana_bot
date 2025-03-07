@@ -39,9 +39,9 @@ export const HIGH_PERCENTAGE_SELL = Number(process.env.HIGH_PERCENTAGE_SELL) / 1
 
 export const AMOUNT_TO_BUY = Number(process.env.AMOUNT_TO_BUY) || 0;
 
-export const UP_TREND_BY_DOLLAR_BUY = parseFloat(process.env.UP_TREND_BY_DOLLAR_BUY || "1");
+export const BUY_SOLANA = parseFloat(process.env.BUY_SOLANA || "1");
 
-export const DOWN_TREND_BY_DOLLAR_SELL = parseFloat(process.env.DOWN_TREND_BY_DOLLAR_SELL || "1");
+export const SELL_SOLANA = parseFloat(process.env.SELL_SOLANA || "1");
 
 export const DEFAULT_TOKEN = {
   'SOL': new Currency(9, 'SOL', 'SOL'),
