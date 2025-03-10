@@ -18,8 +18,8 @@ Modify .env to your configuration
 
 -PRIVATE_KEY="private key here"                                                              
 : Your private key
--POOL_ADDRESS=FyqYBBJ8vhr5AtDZiyJue4Khx9Be6Xijx5nm6aL6wZZV                                   
-: This is USDC to SOL pool address
+-POOL_ADDRESS=                                   
+: The default is USDC to SOL pool address
 
 -BUY_SOLANA = 0.01 #dollar value of increase in price for buying                             
 : in dollars 
