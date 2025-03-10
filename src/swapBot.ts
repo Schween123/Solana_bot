@@ -38,6 +38,7 @@ async function sellSolana(price: number): Promise<void> {
     totalLoss = 0;
 }
 
+
 // Handles buy logic
 function checkBuyCondition(priceChange: number): void {
     if (!boughtTokens && priceChange > 0) {
@@ -59,7 +60,7 @@ async function checkSellCondition(priceChange: number): Promise<void> {
 
     // 🔥 Ensure Immediate Sell when totalLoss >= SELL_SOLANA
     if (totalLoss >= SELL_SOLANA) {
-        // console.log(`${getTimestamp()} | Total Profit: $${totalLoss.toFixed(2)} reached! Selling SOL...`);
+        // console.log(`${getTimestamp()} | 🚨 Total Loss: $${totalLoss.toFixed(2)} reached! Selling SOL...`);
         await sellSolana(current_price!);
         return;
     }
