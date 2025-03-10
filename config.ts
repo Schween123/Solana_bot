@@ -37,7 +37,7 @@ export const LOW_PERCENTAGE_BUY = Number(process.env.LOW_PERCENTAGE_BUY) / 100;
 
 export const HIGH_PERCENTAGE_SELL = Number(process.env.HIGH_PERCENTAGE_SELL) / 100;
 
-export const AMOUNT_TO_BUY = Number(process.env.AMOUNT_TO_BUY) || 0;
+export const AMOUNT_OF_SOL = Number(process.env.AMOUNT_OF_SOL) || 0;
 
 export const BUY_SOLANA = parseFloat(process.env.BUY_SOLANA || "1");
 
