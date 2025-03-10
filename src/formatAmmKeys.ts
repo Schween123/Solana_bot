@@ -49,7 +49,10 @@ export async function formatAmmKeys(programId: string, connection: Connection, f
 
   const ammFormatData = (amAccountmData.map(itemAmm => {
     const itemMarket = marketInfo[itemAmm.marketId.toString()]
-    if (itemMarket === undefined) return undefined
+    if (itemMarket === undefined) {
+      console.warn(`Market info missing for marketId: ${itemAmm.marketId.toString()}`);
+      return undefined;
+    }
 
     const format: ApiPoolInfoV4 = {
       id: itemAmm.id.toString(),

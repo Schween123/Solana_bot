@@ -152,6 +152,12 @@ export async function Trade(connect: Connection, Pool: string, input: TxInputInf
     // If the Liquidity pool is not required for routing, then this variable can be configured as undefined
     console.log('Collected AMM Key info..')
     // -------- step 1: get all route --------
+    console.log("Debugging Trade Inputs:");
+    console.log("Input Token:", input.inputToken);
+    console.log("Input Token Mint:", input.inputToken instanceof Token ? input.inputToken.mint.toBase58() : "None");
+    console.log("Output Token:", input.outputToken);
+    console.log("Output Token Mint:", input.outputToken instanceof Token ? input.outputToken.mint.toBase58() : "None");
+
     const getRoute = TradeV2.getAllRoute({
       inputMint: input.inputToken instanceof Token ? input.inputToken.mint : PublicKey.default,
       outputMint: input.outputToken instanceof Token ? input.outputToken.mint : PublicKey.default,
@@ -169,7 +175,18 @@ export async function Trade(connect: Connection, Pool: string, input: TxInputInf
       await TradeV2.fetchMultipleInfo({ connection: connect, pools: getRoute.needSimulate, batchRequest: true }),
     ])
     console.log('Collected pool info!')
-    // -------- step 3: calculation result of all route --------
+
+    // -------- step 3: calculation result of all route --------   
+    console.log("🛠 Debugging Inputs Before Route Calculation:");
+    console.log("Direct Path:", getRoute.directPath);
+    console.log("Route Path Dict:", getRoute.routePathDict);
+    console.log("Simulate Cache:", poolInfosCache);
+    console.log("Tick Cache:", tickCache);
+    console.log("Input Token Amount:", input.inputTokenAmount?.toString());
+    console.log("Output Token:", input.outputToken);
+    console.log("Slippage:", input.slippage);
+    console.log("Chain Time:", new Date().getTime() / 1000);
+
     const [routeInfo] = TradeV2.getAllRouteComputeAmountOut({
       directPath: getRoute.directPath,
       routePathDict: getRoute.routePathDict,
@@ -179,7 +196,7 @@ export async function Trade(connect: Connection, Pool: string, input: TxInputInf
       outputToken: input.outputToken,
       slippage: input.slippage,
       chainTime: new Date().getTime() / 1000, // this chain time
-
+      
       feeConfig: input.feeConfig,
 
       mintInfos: await fetchMultipleMintInfos({
@@ -189,8 +206,22 @@ export async function Trade(connect: Connection, Pool: string, input: TxInputInf
 
       epochInfo: await connect.getEpochInfo(),
     })
+
+    console.log("Route Info:", routeInfo);
+  
+    if (!routeInfo) {
+        console.log("Route info is undefined! The trade path might be incorrect or no route exists.");
+        return { txids: [] };
+    }
+
     console.log('creating swap transaction...')
     // -------- step 4: create instructions by SDK function --------
+      console.log("Route Info:", routeInfo);
+      if (!routeInfo) {
+          console.error("Route info is undefined! The trade path might be incorrect or no route exists.");
+          return { txids: [] };
+      }
+
     const { innerTransactions } = await TradeV2.makeSwapInstructionSimple({
       routeProgram: PROGRAMIDS.Router,
       connection: connect,
