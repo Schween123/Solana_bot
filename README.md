@@ -13,12 +13,19 @@ This will install the dependencies for running the bot
 ### Prerequisites
 Modify .env to your configuration
 
--RPC_PROVIDER=https://mainnet.helius-rpc.com/?api-key=a0c13b4e-99bc-44dd-858d-d0272b46f31c   : your rpc provider
--PRIVATE_KEY="private key here"                                                              : Your private key
--POOL_ADDRESS=FyqYBBJ8vhr5AtDZiyJue4Khx9Be6Xijx5nm6aL6wZZV                                   : This is USDC to SOL pool address
+-RPC_PROVIDER=https://mainnet.helius-rpc.com/?api-key=a0c13b4e-99bc-44dd-858d-d0272b46f31c   
+: your rpc provider
 
--BUY_SOLANA = 0.01 #dollar value of increase in price for buying                             : in dollars 
--SELL_SOLANA = 0.05 #dollar value of decrease in price for selling                            : in dollars
+-PRIVATE_KEY="private key here"                                                              
+: Your private key
+-POOL_ADDRESS=FyqYBBJ8vhr5AtDZiyJue4Khx9Be6Xijx5nm6aL6wZZV                                   
+: This is USDC to SOL pool address
+
+-BUY_SOLANA = 0.01 #dollar value of increase in price for buying                             
+: in dollars 
+
+-SELL_SOLANA = 0.05 #dollar value of decrease in price for selling                            
+: in dollars
 
 -AMOUNT_TO_BUY = 100
 
